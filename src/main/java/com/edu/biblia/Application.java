@@ -6,17 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
-
 @SpringBootApplication
 @Slf4j
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private VerseRepository repo;
+    private VersiculoRepository repo;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -24,7 +19,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(repo.findByIdVerse(1));
+        System.out.println(repo.findById(31103));
         /*String fileName = "c://lines.txt";
 
         //read file into stream, try-with-resources
