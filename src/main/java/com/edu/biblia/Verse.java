@@ -23,6 +23,6 @@ public class Verse {
     private Version version;
 
     @ManyToOne
-    @JoinColumn(name ="idVersion")
+    @JoinColumn(name ="idBook")
     private Book book;
 }

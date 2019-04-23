@@ -17,7 +17,7 @@ public class Version {
     @Id
     @Column(name="idBible")
     Integer idBible;
-    String name, abreviatioin, comment, fuente;
+    String name, abreviation, comment, fuente;
     Integer apocrifa, fuertes;
 
     @OneToMany(mappedBy="version", cascade = CascadeType.ALL)
