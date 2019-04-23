@@ -8,7 +8,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-@ToString
 @Entity
 public class Versiculo {
     @Id
@@ -23,4 +22,11 @@ public class Versiculo {
     @ManyToOne
     @JoinColumn(name ="id_libro")
     private Libro libro;
+
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        s.append(texto).append("<br />").append(libro.getLibro())
+                .append(" ").append(capitulo).append(":").append(versiculo);
+        return s.toString();
+    }
 }

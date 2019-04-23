@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-//@Getter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
