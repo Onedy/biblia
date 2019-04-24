@@ -2,11 +2,13 @@ package com.edu.biblia;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
-@Setter
 @ToString
 public class VersiculoPlano {
-    String libro; int capitulo; int versiculo;
+    final String libro;
+    final int capitulo;
+    final List<Integer> versiculos;
 }
