@@ -23,8 +23,8 @@ import java.util.stream.Stream;
 public class Application implements CommandLineRunner {
 
     //String pattern1verse = "(.+) (\\d+):(\\d+)";
-    String versesInterval = "^(.+) (\\d+):(\\d+)-(\\d+)$";
-    String verseEnumeration = "^(.+) (\\d+):(\\d+(,\\d+)*)$";
+    String versesInterval = "^(.+) (\\d+)(?::|.)(\\d+)-(\\d+)$";
+    String verseEnumeration = "^(.+) (\\d+)(?::|.)(\\d+(?:,\\d+)*)$";
     String versesDelimiter = " ";
     int versiculoActual = 0;
     Pattern versesIntervalPattern = Pattern.compile(versesInterval);
@@ -40,15 +40,56 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String fileName = "C:\\Users\\edoo\\IdeaProjects\\biblia\\src\\main\\resources\\versiculos.txt";
 
-        int columnas = 4;
+        int columnas = 3;
         StringBuilder s = new StringBuilder();
         s.append("<html><head><title></title><style>" +
+                "*, *:after, *:before {" +
+                "            margin: 0; /* Margin zero is used to prevent unnecessary white space. */" +
+                "            padding: 0; /* Padding zero is used to prevent unnecessary white space. */" +
+                "            -moz-box-sizing: border-box;" +
+                "            -webkit-box-sizing: border-box;" +
+                "            box-sizing: border-box; /* Border boxing is used, so the padding, margin and borders are within de width and height of de element. */" +
+                "        }" +
                 "td{" +
-                "   border:1px black solid;" +
-                "   width:"+(100/columnas)+"%;" +
+                "   box-shadow: inset 0 0 0 1px black;" +
+                "   width:7cm;" +
+                "   height:5.1cm;" +
+                "   margin:0;" +
+                "   padding:0 0.35cm;" +
+                "   overflow:hidden;" +
+                "}" +
+                ".rel{" +
+                "   position:relative;" +
+                "   height:100%;" +
+                "}" +
+                ".abs{" +
+                "   overflow-y:auto;" +
+                "   position:absolute;" +
+                "   top:0;right:0;bottom:0;left:0;" +
+                "   font-size:0.5cm;" +
                 "}" +
                 "table{" +
-                "   border-spacing:1px;" +
+                //"   border-spacing:1px;" +
+                //"   width:100%;" +
+                "   border-collapse: collapse;" +
+                "}" +
+                "body{" +
+                "   height:100%;" +
+                "   max-height:100%;" +
+                "}" +
+                ".texto{" +
+                "   margin:0;" +
+                "}" +
+                ".referencia{" +
+                "   text-align: right;" +
+                "   margin-bottom: 0;" +
+                "   margin-top: 0.7em;" +
+                "}" +
+                ".centered{" +
+                "   margin: 0;" +
+                "   position: absolute;" +
+                "   top: 50%;" +
+                "   transform: translate(0%, -50%);" +
                 "}</style></head><body><table>");
         try (Stream<String> stream = Files.lines(Paths.get(fileName), StandardCharsets.UTF_8)) {
 
@@ -64,11 +105,11 @@ public class Application implements CommandLineRunner {
                     }
                     String texto = String.join(versesDelimiter, versiculos.stream().map(Versiculo::getTexto).collect(Collectors.toList()));
                     if(versiculoActual%columnas==0){
-                        s.append("<tr><td>").append(texto).append("<br />").append(line).append("</td>");
+                        s.append("<tr><td><div class=\"rel\"><div class=\"abs\"><div class=\"centered\"><p class=\"texto\">").append(texto).append("</p><p class=\"referencia\">").append(line).append("</p></div></div></div></td>");
                     }else if(versiculoActual%columnas==columnas-1){
-                        s.append("<td>").append(texto).append("<br />").append(line).append("</td></tr>");
+                        s.append("<td><div class=\"rel\"><div class=\"abs\"><div class=\"centered\"><p class=\"texto\">").append(texto).append("</p><p class=\"referencia\">").append(line).append("</p></div></div></div></td></tr>");
                     }else{
-                        s.append("<td>").append(texto).append("<br />").append(line).append("</td>");
+                        s.append("<td><div class=\"rel\"><div class=\"abs\"><div class=\"centered\"><p class=\"texto\">").append(texto).append("</p><p class=\"referencia\">").append(line).append("</p></div></div></div></td>");
                     }
                     versiculoActual += 1;
                 } catch (Exception e) {

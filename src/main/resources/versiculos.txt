@@ -1,6 +1,6 @@
-﻿Jeremías 31:3
+﻿Jeremías 31.3
 Salmos 103:17
-Salmos 91:14
+Salmos 91.14
 I Juan 4:7
 Salmos 10:17
 Salmos 68:19
@@ -13,7 +13,7 @@ Salmos 46:1
 Salmos 28:7
 Hebreos 13:6
 Jeremías 17:7
-Salmos 103:2-3
+Salmos 103.2,3
 Salmos 16:11
 Gálatas 6:10
 Mateo 5:16
@@ -51,7 +51,7 @@ Isaías 26:3,4
 Salmos 34:18
 Proverbios 19:23
 Juan 6:47
-Proverbios 3:5-7
+Proverbios 3.5-7
 Salmos 37:5
 Salmos 37:4
 Salmos 4:8
